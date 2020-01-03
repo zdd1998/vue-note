@@ -7,7 +7,7 @@
                 <Input v-model="password" type="password" password placeholder="请输入密码" style="width: 400px"/><br><br>
                 <Input v-model="password_config" type="password" password placeholder="请确认密码" style="width: 400px"/><br><br>
                 <Button @click="signup" style="width: 270px">注册</Button>
-                <span style="cursor: pointer;margin-left: 30px;" @click="$router.push('/login')">返回登陆</span>
+                <span style="cursor: pointer;margin-left: 35px;" @click="$router.push('/login')">返回登陆</span>
             </div>
         </div>
     </div>
