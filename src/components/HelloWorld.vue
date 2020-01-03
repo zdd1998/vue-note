@@ -61,7 +61,7 @@
                         v-model="add"
                         :title="title"
                         @on-ok="ok"
-                        @on-cancel="cancel">
+                        @on-cancel="">
                     <Row>
                         <Col span="12">
                             <ColorPicker v-model="tag_color" :colors="color"/>
@@ -92,11 +92,11 @@
         data() {
             return {
                 checkAll: false,
-                color: ['#FDF191', '#D1E8F6', '#FFF', '#E3F5B5', '#FFD5D5'],
+                color: ['#FDF191', '#D1E8F6', '#FFFFFF', '#E3F5B5', '#FFD5D5'],
                 color_dic: {
                     '#FDF191': 0,
                     '#D1E8F6': 1,
-                    '#FFF': 2,
+                    '#FFFFFF': 2,
                     '#E3F5B5': 3,
                     '#FFD5D5': 4
                 },
@@ -143,8 +143,8 @@
                     })
                 })
             },
-            show_logout(){
-                this.logout_status=true;
+            show_logout() {
+                this.logout_status = true;
             },
             logout() {
                 this.spinShow = true
@@ -152,12 +152,12 @@
                 location.reload()
             },
             ok() {
-                if(this.tag_content === ''){
+                if (this.tag_content === '') {
                     this.$Notice.open({
-                        title: '添加失败',
-                        desc:'标签内容不能为空'
+                        title: this.title === '修改标签' ? '修改失败' : '新增失败',
+                        desc: '标签内容不能为空'
                     });
-                }else{
+                } else {
                     console.log(123)
                     const uuidv4 = require('uuid/v4');
                     axios({
@@ -174,7 +174,7 @@
                     })
                     this.uid = '';
                     this.$Notice.open({
-                        title: '添加成功',
+                        title: this.title === '修改标签' ? '修改成功' : '新增成功',
                         desc: this.tag_content
                     });
                 }
@@ -210,9 +210,9 @@
                     )
                 } else {
                     this.spinShow = true;
-                    setTimeout(()=>{
+                    setTimeout(() => {
                         location.reload()
-                    },500)
+                    }, 500)
                 }
             }
         }
@@ -232,15 +232,24 @@
         border: 1px solid black;
         margin: 10px;
     }
-    .demo-spin-icon-load{
+
+    .demo-spin-icon-load {
         animation: ani-demo-spin 1s linear infinite;
     }
+
     @keyframes ani-demo-spin {
-        from { transform: rotate(0deg);}
-        50%  { transform: rotate(180deg);}
-        to   { transform: rotate(360deg);}
+        from {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(180deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
-    .demo-spin-col{
+
+    .demo-spin-col {
         height: 100px;
         position: relative;
         border: 1px solid #eee;
