@@ -61,7 +61,7 @@
                         v-model="add"
                         :title="title"
                         @on-ok="ok"
-                        @on-cancel="">
+                        @on-cancel="cancel">
                     <Row>
                         <Col span="12">
                             <ColorPicker v-model="tag_color" :colors="color"/>
@@ -115,6 +115,9 @@
             this.getnotes();
         },
         methods: {
+            cancel(){
+                this.uid = '';
+            },
             modify(item) {
                 this.tag_color = this.color[item.color]
                 console.log(this.tag_color)
