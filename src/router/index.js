@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import login from '@/components/login';
 import signup from '@/components/signup';
+import showtag from '@/components/showtag'
 import store from '@/store';
 
 Vue.use(Router)
@@ -24,6 +25,10 @@ const router = new Router({
     {
       path: '/signup',
       component: signup
+    },
+    {
+      path: '/showTag/:uid',
+      component: showtag
     }
   ]
 })

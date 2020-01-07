@@ -9,7 +9,9 @@ import ViewUI from 'view-design'
 
 // 2. 引入样式
 import 'view-design/dist/styles/iview.css'
+import VueClipboard from 'vue-clipboard2'
 
+Vue.use(VueClipboard)
 // 3. 生效
 Vue.use(ViewUI)
 

@@ -41,17 +41,18 @@
                         <div style="display: flex"
                              v-for="(item,index) in note">
                             <div class="notes" :style="{backgroundColor: color[item.color]}">
-                                <div @click="modify(item)" style="flex: 1;text-align: left">
+                                <div @click="modify(item)" style="flex: 1;text-align: left;overflow: hidden;height: 26px;line-height: 26px;">
                                     {{item.content}}
                                 </div>
-                                <div style="width: 100px;">
+                                <div style="width: 100px;line-height: 26px;">
                                     {{item.modify_date * 1000|changeTime}}
                                 </div>
                             </div>
-                            <div style="width: 60px;margin-top: 10px;">
+                            <div style="width: 100px;margin-top: 10px;">
                                 <Checkbox :label="index">
                                     <Icon size="30" type="md-trash"/>
                                 </Checkbox>
+                                <Icon size="30" type="md-share" @click="share(item.uid)"></Icon>
                             </div>
                         </div>
                     </CheckboxGroup>
@@ -115,7 +116,7 @@
             this.getnotes();
         },
         methods: {
-            cancel(){
+            cancel() {
                 this.uid = '';
             },
             modify(item) {
@@ -217,6 +218,22 @@
                         location.reload()
                     }, 500)
                 }
+            },
+            share(uid) {
+                console.log(uid);
+                var base64 = require('uuid-base64');
+                var encodeurl = base64.encode(uid);
+                var urlroot = "localhost:8080/#/showtag";
+                var url = urlroot + "/" + encodeurl;
+                this.$Modal.success({
+                    title: "分享链接",
+                    content: url,
+                    width: "600px",
+                    okText: "复制链接",
+                    onOk: () => {
+                        this.$copyText(url)
+                    }
+                })
             }
         }
     }
