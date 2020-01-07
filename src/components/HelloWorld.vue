@@ -1,7 +1,11 @@
 <template>
     <div style="display: flex;flex-direction: column;margin-top: 50px;">
+        <div style="margin: auto">
+            <img src="../assets/icon_app.png" style="vertical-align: center" height="90" width="90"/>
+            <span style="font-size: 42px;">小米便签</span>
+        </div>
         <div>
-            <Button style="float: right;padding: 5px 20px;margin: 0 40px;" type="dashed" @click="show_logout">登出
+            <Button style="float: right;padding: 5px 20px;margin: -30px 40px;" type="dashed" @click="show_logout">登出
             </Button>
             <Modal v-model="logout_status" width="360">
                 <p slot="header" style="color:#f60;text-align:center">
@@ -77,7 +81,7 @@
                     <!--                            <DropdownItem v-for="item in color" :style="{backgroundColor: item}">''</DropdownItem>-->
                     <!--                        </DropdownMenu>-->
                     <!--                    </Dropdown>-->
-                    <Input type="textarea" :rows="5" v-model="tag_content" size="large" placeholder="请输入标签内容"/>
+                    <Input type="textarea" :rows="8" v-model="tag_content" size="large" placeholder="请输入标签内容"/>
                 </Modal>
             </div>
         </div>
@@ -223,7 +227,7 @@
                 console.log(uid);
                 var base64 = require('uuid-base64');
                 var encodeurl = base64.encode(uid);
-                var urlroot = "localhost:8080/#/showtag";
+                var urlroot = "localhost:8083/#/showtag";
                 var url = urlroot + "/" + encodeurl;
                 this.$Modal.success({
                     title: "分享链接",

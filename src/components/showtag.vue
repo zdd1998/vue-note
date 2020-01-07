@@ -1,5 +1,5 @@
 <template>
-    <div style="display: flex;flex-direction: column" :key="Math.random()">
+    <div style="display: flex;flex-direction: column">
         <div style="margin: auto;height: 100px;">
             <img src="../assets/icon_app.png" style="vertical-align: center" height="90" width="90"/>
             <span style="font-size: 42px;">小米便签</span>
@@ -27,7 +27,15 @@
                 color: ['#FDF191', '#D1E8F6', '#FFFFFF', '#E3F5B5', '#FFD5D5'],
             }
         },
+        watch: {
+            '$route' (to, from) {
+                if (to.name === 'showtag') {
+                    console.log(123)     // 在此调用函数
+                }
+            }
+        },
         mounted() {
+            console.log(456)
             this.param = this.$route.params.uid;
             console.log(this.param);
             var base64 = require('uuid-base64');
